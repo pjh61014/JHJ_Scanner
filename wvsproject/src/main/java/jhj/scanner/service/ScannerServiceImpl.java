@@ -20,6 +20,7 @@ public class ScannerServiceImpl implements ScannerService {
 		System.out.println("서비스 진입>>"+url);
 		scanUrl.scan(url);
 		//dao.process_run(url);
+		//test
 	}
 
 }

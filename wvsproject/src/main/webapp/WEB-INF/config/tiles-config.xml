@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="mainTemplate" template="/WEB-INF/views/main_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/top_index.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/main_content.jsp" />
+	</definition>
+
+	<!-- 각각의 기능을 선택할 때 마다 보여지는 페이지를 등록한다. 위에서 정의한 템플릿을 기준으로 변경되는 부분만 정의한다. name속성에 
+		정의하는 이름이 실제 컨트롤러에서 forward할 view의 이름 ::::여기는 내 맘대로~~ 이름을 줌!???!?!?!?!? :::: 
+		extends속성은 어떤 템플릿을 확장해서 뷰를 만들 것인지를 등록 (템플릿의 이름을 정의- 미리 정의되어있어야 함) -->
+
+
+	<definition name="main" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/main_content.jsp" />
+	</definition>
+
+
+</tiles-definitions>

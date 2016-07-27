@@ -10,7 +10,7 @@ public class ScanningProcess {
 		System.out.println("비지니스로직 진입!!"+url);
     	
     	//String[] arguments = {"iotest.py", url};
-    	String[] arguments = {"main.py", url};
+    	String[] arguments = {"iotest.py", url};
     	PythonInterpreter.initialize(System.getProperties(), System.getProperties(), arguments);
     	org.python.util.PythonInterpreter python = new org.python.util.PythonInterpreter();
     	StringWriter out = new StringWriter();

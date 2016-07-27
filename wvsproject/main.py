@@ -17,7 +17,7 @@ def url(url):
     # url = raw_input("url를 입력하세요: ")
     # real_url ="http://s50247-102131-hm3.tarentum.hack.me/index.php"
     #real_url = "http://192.168.0.32:5555/WebGoat/start.mvc"
-    #url = "http://demo.testfire.net/bank/login.aspx"
+    #real_url = "http://demo.testfire.net/bank/login.aspx"
     #real_url="http://127.0.0.1:8088/mySecondPro/login.do"
     #real_url ="http://testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F"
     #real_url = "http://demo.testfire.net/bank/transaction.aspx"
@@ -43,5 +43,4 @@ def scan_header(url):
     
 if __name__ == "__main__":
     url(sys.argv[1])
-    print sys.argv[1]
-    #url()
+    

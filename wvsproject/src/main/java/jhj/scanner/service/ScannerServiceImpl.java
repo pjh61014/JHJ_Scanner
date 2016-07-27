@@ -18,7 +18,7 @@ public class ScannerServiceImpl implements ScannerService {
 		// TODO Auto-generated method stub
 		ScanningProcess scanUrl = new ScanningProcess();
 		System.out.println("서비스 진입>>"+url);
-		scanUrl.scan(url);
+		scanUrl.Scan(url);
 		//dao.process_run(url);
 		//dfsaf
 	}

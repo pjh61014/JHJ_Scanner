@@ -1,5 +1,6 @@
 import sys
 
+
 def getString(str): 
 	return str
 

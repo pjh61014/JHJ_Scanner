@@ -3,6 +3,7 @@
 	<name>wvsproject</name>
 	<comment></comment>
 	<projects>
+		<project>jhjScanner</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

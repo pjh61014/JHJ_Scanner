@@ -9,7 +9,7 @@ public class scanningTest {
 	private String url;
 
 	public scanningTest() {
-
+		System.out.println("dfasfs");
 	}
 
 	public scanningTest(String url) {

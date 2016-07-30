@@ -32,7 +32,7 @@ public class ScanningProcesss {
 		GatewayServer.turnLoggingOn();
 		
 		
-		System.out.println("Gateway Server Started");
+		System.out.println("Gateway Server Stated");
 		String path = 
 				"C:\\Users\\Administrator\\git\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
 		String path2="C:\\Users\\Administrator\\Documents\\workspace-sts-3.7.3.RELEASE\\jhjScanner\\src\\scanner\\test.py";

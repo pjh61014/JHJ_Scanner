@@ -1,6 +1,5 @@
 package jhj.scanner.bo;
 
-import java.io.InputStream;
 import java.io.StringWriter;
 
 import org.python.core.Py;

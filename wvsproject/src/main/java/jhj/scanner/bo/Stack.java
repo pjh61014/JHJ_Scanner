@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Stack {
 	private List<String> internalList = new LinkedList<String>();
-
+	
 	public void push(String element) {
 		internalList.add(0, element);
 	}
@@ -24,4 +24,9 @@ public class Stack {
 			this.push(element);
 		}
 	}
+	
+	public Stack getStack(Stack stack){
+		return stack;
+	}
+		
 }

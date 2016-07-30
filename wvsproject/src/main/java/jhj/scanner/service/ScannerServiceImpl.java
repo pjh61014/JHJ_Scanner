@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import jhj.scanner.bo.ScanningProcesss;
-import jhj.scanner.bo.scanningProcess;
 import jhj.scanner.dao.ScannerDAO;
 
 @Service

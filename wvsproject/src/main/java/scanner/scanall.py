@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
 Created on 2016. 7. 20.
-
 @author: jhj
 '''
 import sys
@@ -152,22 +151,23 @@ def errorCheck(re, dberror):
 
     
 if __name__ == "__main__":
-    gateway=JavaGateway(GatewayParameters(port=25335))
+    gateway = JavaGateway()
 
     print "python dfsaf 코드 실행중......"
     print "python py4j gateway start......"
-    java_url = gateway.entry_point # 브라우져
+    java_url = gateway.entry_point.getStack() # 브라우져
     print "python py4j getUrl 호출......"
-#    print gateway
-    
-    f=open("C:/Users/Administrator/Documents/data.txt","w")
-    f.write(str(java_url))
-    f.close()
-    print java_url,str(java_url)
+    #java_url.push("jonghyuck ggamae")
+    #internal_list = java_url.getInternalList()
+    #print str(internal_list)
+    #print java_url.pop()
+    url(java_url.getUrl())
+    #url("http://demo.testfire.net/bank/login.aspx")
+    #f=open("C:/Users/Administrator/Documents/data.txt","w")
+    #f.write(str(java_url))
+    #f.close()
+    #print java_url,str(java_url)
 
-    print "python py4j gateway 호출완료......"
-    print "url method 호출 중...."
-    url(java_url)
-    
-    
-    
+    #print "python py4j gateway 호출완료......"
+    #print "url method 호출 중...."
+    #url(java_url)

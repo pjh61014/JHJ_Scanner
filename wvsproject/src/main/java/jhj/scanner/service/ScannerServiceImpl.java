@@ -3,8 +3,7 @@ package jhj.scanner.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import jhj.scanner.bo.ScanningProcesss;
-import jhj.scanner.bo.scanningProcess;
+import jhj.scanner.bo.ScanningProcess;
 import jhj.scanner.dao.ScannerDAO;
 
 @Service
@@ -22,8 +21,9 @@ public class ScannerServiceImpl implements ScannerService {
 		scanUrl.test(url);
 		dao.process_run(url);*/
 		
-		ScanningProcesss scanUrl = new ScanningProcesss();
-		scanUrl.scan(url);
+		ScanningProcess scanBl = new ScanningProcess();
+		System.out.println("서비스 들어옴????");
+		scanBl.scan(url);
 	}
 
 }

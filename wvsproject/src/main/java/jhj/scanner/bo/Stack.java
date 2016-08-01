@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Stack {
 	private List<String> internalList = new LinkedList<String>();
+	private String url;
 
 	public void push(String element) {
 		internalList.add(0, element);
@@ -23,5 +24,13 @@ public class Stack {
 		for (String element : elements){
 			this.push(element);
 		}
+	}
+	
+	public void setUrl(String url){
+		this.url = url;
+	}
+	
+	public String getUrl(){
+		return this.url;
 	}
 }

@@ -165,12 +165,12 @@ if __name__ == "__main__":
     url(java_url.getUrl())
     #url("http://demo.testfire.net/bank/login.aspx")
 
-    java_url.push("jonghyuck ggamae")
-    internal_list = java_url.getInternalList()
-    print str(internal_list)
-    print java_url.pop()
-    print "hyejt jol mot"
-    url("http://demo.testfire.net/bank/login.aspx")
+    #java_url.push("jonghyuck ggamae")
+    #internal_list = java_url.getInternalList()
+    #print str(internal_list)
+    #print java_url.pop()
+    #print "hyejt jol mot"
+    #url("http://demo.testfire.net/bank/login.aspx")
 #f=open("C:/Users/Administrator/Documents/data.txt","w")
     #f.write(str(java_url))
     #f.close()

@@ -24,7 +24,7 @@ public class ScannerServiceImpl implements ScannerService {
 		
 		ScanningUrl scanBl = new ScanningUrl();
 		System.out.println("서비스 들어옴????");
-		scanBl.scan();
+		scanBl.scan(url);
 	}
 
 }

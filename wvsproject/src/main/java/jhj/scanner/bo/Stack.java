@@ -16,21 +16,25 @@ public class Stack {
 
 	}
 
-	public List<String> getInternalList(){
+	public List<String> getInternalList() {
 		return internalList;
 	}
 
-	public void pushAll(List<String> elements){
-		for (String element : elements){
+	public void pushAll(List<String> elements) {
+		for (String element : elements) {
 			this.push(element);
 		}
 	}
-	
-	public void setUrl(String url){
+
+	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	public String getUrl(){
+
+	public String getUrl() {
 		return this.url;
+	}
+
+	public Stack getStack(Stack stack) {
+		return stack;
 	}
 }

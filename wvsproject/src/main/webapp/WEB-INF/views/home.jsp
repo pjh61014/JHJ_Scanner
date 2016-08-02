@@ -10,6 +10,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href ="main_layout.jsp">메인화면?</a>
+<a href ="resultpage.jsp">메인화면?</a>
 </body>
 </html>

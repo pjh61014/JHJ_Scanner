@@ -13,11 +13,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="res/common/css/bootstrap.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
 <link href="res/common/css/main.css" rel="stylesheet">
-<!-- <link rel="stylesheet" href="res/common/css/icomoon.css"> -->
-<!-- <link href="/res/common/css/animate-custom.css" rel="stylesheet"> -->
 
 
 
@@ -52,10 +48,9 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="#home" class="smoothScroll"> MAIN </a></li>
 						<li><a href="#about" class="smoothScroll"> HOW TO </a></li>
-						<li><a href="#services" class="smoothScroll"> SCAN </a></li>
-						<li><a href="#team" class="smoothScroll"> RESULT </a></li>
+						<li><a href="index.do" class="smoothScroll"> SCAN </a></li>
+						<li><a href="result.do" class="smoothScroll"> RESULT </a></li>
 						<li><a href="#contact" class="smoothScroll"> CONTACT </a></li>
 				</div>
 				<!--/.nav-collapse -->

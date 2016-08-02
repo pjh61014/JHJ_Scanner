@@ -30,6 +30,8 @@ def scan_header(url):
         print "url status: 200 ok"
         print "header infor....\n",opener.headers 
         test2 = form_mechanize(url)
+        #sql_mechanize(url)
+        #xss_mechanize(url)
         print test2
         req_url(url, test2)
             

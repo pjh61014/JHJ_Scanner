@@ -1,0 +1,79 @@
+@CHARSET "EUC-KR";
+body{
+
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+
+#result_body{
+	margin: 10%
+
+}
+
+#vul_result_table1 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin:100px 0;
+ 	table-align:"center";
+}
+.td_title{
+    border: 1px solid #f9f9f9;
+    text-align: left;
+    width: 20%;
+    padding: 8px;
+}
+td{
+    border: 1px solid #f9f9f9;
+    text-align: right;
+    width: 80%;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+
+.vul_result_table2{
+	width: 80%;
+	display:table;		
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	border-bottom:2px solid #dddddd;
+	color:#8d8d8d;
+	margin:100px 0;
+	table-align:"center";
+}
+.table-head{
+	 display: table-header-group; 
+}
+.table-head .column{			
+	background:#00AFAD;
+	color:white;
+	border-right:1px solid #98D9DB;
+	border-bottom:none;
+}
+ .table-head .column:hover{	
+	background:#00AFAD;
+} 
+.row2{
+	display:table-row;		
+}
+.row2 .column:nth-child(1){	
+	border-left:1px solid #eeeeee;
+}
+.row2:last-child .column{	
+	border-bottom:none;
+}
+.column{
+	display:table-cell;		
+	padding:10px 20px;
+	border-bottom:1px solid #eeeeee;
+	border-right:1px solid #eeeeee;
+	line-height:1.8em;
+}
+.column:hover{
+	background:#f9f9f9;
+}

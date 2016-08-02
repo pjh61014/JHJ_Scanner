@@ -16,7 +16,11 @@
 
 	<definition name="main" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/main_content.jsp" />
+
 	</definition>
 
+	<definition name="result" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/resultpage.jsp" />
+	</definition>
 
 </tiles-definitions>

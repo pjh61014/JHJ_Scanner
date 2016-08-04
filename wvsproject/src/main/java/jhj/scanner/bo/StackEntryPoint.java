@@ -7,7 +7,7 @@ public class StackEntryPoint {
 	
 	public StackEntryPoint(){
 		stack =  new Stack();
-		stack.push("Initial Item");
+		
 	}
 	
 	public Stack getStack() {

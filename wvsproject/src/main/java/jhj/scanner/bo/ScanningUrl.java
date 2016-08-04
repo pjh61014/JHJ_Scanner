@@ -9,6 +9,7 @@ import py4j.GatewayServer;
 public class ScanningUrl {
 
 	private Stack stack;
+	private String date;
 
 	public ScanningUrl() {
 
@@ -21,76 +22,106 @@ public class ScanningUrl {
 
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+
+	}
+
 	public Stack getStack() {
+		// System.out.println("sssssssssssssssssssssssss" + stack.toString());
 		return stack;
 	}
 
-	public void scan(String url) {
+	public String scan(String url) {
 
 		GatewayServer gatewayServer = new GatewayServer(new ScanningUrl(url));
 		gatewayServer.start();
 		System.out.println("Gateway Server Stated");
-
+		// System.out.println("dfgdgdfgdgfdfgdfgdf00000000000000000000"+getStack());
 		try {
+			// System.out.println("dfgdgdfgdgfdfgdfgdf++++++++++++++++"+getStack());
 			System.out.println("**[java] python soure code execute!!");
 			String path = "C:\\Users\\Administrator\\git\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
+			// System.out.println("dfgdgdfgdgfdfgdfgdf111111111111111"+getStack());
 			Process p = Runtime.getRuntime().exec("cmd /c python " + path);
-			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+			System.out.println("dfgdgdfgdgfdfgdfgd222222222222222f");
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"));
 			System.out.println("[java in========================");
-			//System.out.println(in);
+			// System.out.println(in);
 			String line;
 			while ((line = in.readLine()) != null) {
 				System.out.println(line);
+				if (line.startsWith("urldate")) {
+					System.out.println("urldate ÀÐ¾î¿È");
+					String[] data = line.split(",");
+
+					for (int i = 0; i < data.length; i++) {
+						data[i].trim();
+						data[i].replaceAll(" ", "");
+						System.out.println(data[i+1].toString());
+
+					}
+
+					for (String cha : data) {
+						cha.replaceAll(" ", "");
+						cha.trim();
+						System.out.println(cha);
+					}
+
+					String trim = line.trim();
+					System.out.println(trim);
+
+					System.out.println(data);
+
+					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
+					// list.add(dto)
+
+				}
+				if (line.startsWith("formnameid")) {
+					System.out.println("formnameid ÀÐ¾î¿È");
+					String trim = line.trim();
+					System.out.println("trim" + trim);
+					String[] data = line.split(",");
+					System.out.println(data);
+
+					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
+					// list.add(dto)
+
+				}
+
+				if (line.startsWith("vulinfo")) {
+					System.out.println("vulinfo ÀÐ¾î¿È");
+					String trim = line.trim();
+					System.out.println(trim);
+					String[] data = line.split(",");
+					System.out.println(data);
+
+					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
+					// list.add(dto)
+
+				}
 			}
-			//in.close();
+
+			in.close();
+
 			p.waitFor();
-			System.out.println("endddddd");
+
+			System.out.println("end");
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// GatewayServer.turnLoggingOn();
+
 		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-
-		// gatewayServer.shutdown();
-		/*
-		 * String path =1
-		 * "C:\\Users\\Administrator\\git\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
-		 * String path2 =
-		 * "C:\\Users\\Administrator\\Documents\\workspace-sts-3.7.3.RELEASE\\jhjScanner\\src\\scanner\\test.py";
-		 * System.out.println("\n..." + path); try { System.out.println(
-		 * "python ..."); Runtime r = Runtime.getRuntime(); Process p = r.exec(
-		 * "python " + path); System.out.println("python .."); p.waitFor();
-		 * BufferedReader reader = new BufferedReader(new
-		 * InputStreamReader(p.getInputStream())); String line; while ((line =
-		 * reader.readLine()) != null) { System.out.println(line); }
-		 * reader.close(); System.out.println("sssss"); System.exit(0); } catch
-		 * (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
-
+		return this.date;
 	}
-	/*
-	 * public static void main(String[] Args) { String url =
-	 * "www.address.com/111"; ScanningUrl sp = new ScanningUrl(url); sp.scan();
-	 * String url = "wwwwww"; GatewayServer gatewayServer = new
-	 * GatewayServer(new ScanningProcesss(url), 25335); gatewayServer.start();
-	 * String path =
-	 * "C:\\Users\\JongHyuk\\git\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
-	 * try { Process p = Runtime.getRuntime().exec("python " + path);
-	 * p.waitFor(); BufferedReader reader = new BufferedReader(new
-	 * InputStreamReader(p.getInputStream())); String line; while ((line =
-	 * reader.readLine()) != null) { System.out.println(line); } } catch
-	 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace();
-	 * } catch (InterruptedException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * gatewayServer.shutdown();
-	 * 
-	 * }
-	 * 
-	 */}
+}

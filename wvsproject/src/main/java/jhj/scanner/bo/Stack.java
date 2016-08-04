@@ -34,7 +34,4 @@ public class Stack {
 		return this.url;
 	}
 
-	public Stack getStack(Stack stack) {
-		return stack;
-	}
 }

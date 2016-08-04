@@ -7,6 +7,19 @@ import sys
 import urllib, urllib2, cookielib
 from py4j.java_gateway import JavaGateway, GatewayParameters
 import mechanize
+import csv
+
+def getPatterns():
+    dict = {}
+    with open('pattern_dict.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            #print (row['title'], row['pattern'])
+            dict[row['title']]=row['pattern'].strip()
+        csvfile.close()
+
+    return dict
+
 
 
 def url(url):
@@ -18,8 +31,9 @@ def url(url):
     # real_url ="http://testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F"
     # real_url = "http://demo.testfire.net/bank/transaction.aspx"
     # real_url="http://www.daum.net/"
-    print "�Էµ� url", url
-    scan_header(url)
+    print "url", url
+
+    
     # scan_header(real_url)
                
 def scan_header(url):
@@ -118,6 +132,9 @@ def sqli_attack(real_url, result):
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
     urllib2.install_opener(opener)
     
+    attack = getPatterns()
+    print len(attack)
+    
     for re in result:
         print re
         data = urllib.urlencode(re)
@@ -151,14 +168,17 @@ def errorCheck(re, dberror):
     if "Syntax error (missing operator) in query expression" in dberror:
         print "sql Injection", "1"
 
+
     
 if __name__ == "__main__":
     gateway = JavaGateway()
 
     print "python dfsaf 코드 실행중......"
     print "python py4j gateway start......"
+    print sys.path
     java_url = gateway.entry_point.getStack() # 브라우져
     print "python py4j getUrl 호출......"
+    
 
     #java_url.push("jonghyuck ggamae")
     #internal_list = java_url.getInternalList()
@@ -184,6 +204,6 @@ if __name__ == "__main__":
     #url(java_url)
 
     #url(java_url)
-    
+
     
     

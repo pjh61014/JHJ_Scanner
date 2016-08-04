@@ -16,7 +16,7 @@ public class urlScanController {
 
 	@RequestMapping(value = "/urlscan.do", method = RequestMethod.POST)
 	public ModelAndView loginForm(String url){
-		System.out.println("컨트롤러 들어옴!!"+url);
+		System.out.println("컨트롤러 들어옴!!" + url);
 		service.process_run(url);
 		ModelAndView mav = new ModelAndView();
 		//mav.addObject("ref", ref);

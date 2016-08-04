@@ -72,8 +72,8 @@
 			<input type="submit" value="진단">
  -->
 			<div class="search">
-				<label for="url">취약점 진단할 URL을 입력해주세요.</label><br> 
-				<input type="text" class="form-control" id="btn_url_submit">
+				<label for="label_url">취약점 진단할 URL을 입력해주세요.</label><br> 
+				<input type="text" class="form-control" id="btn_url_submit" name = "url">
 				<button type="submit" class="btn" id ="btn-search">진단하기</button>
 			</div>
 

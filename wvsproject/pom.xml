@@ -21,6 +21,14 @@
 			<version>2.10.1</version>
 		</dependency>
 
+		<!-- mongodb -->
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.6.0.RELEASE</version>
+		</dependency>
+
 
 		<!-- Spring -->
 		<dependency>
@@ -207,6 +215,14 @@
 			<artifactId>py4j</artifactId>
 			<version>0.8.2.1</version>
 		</dependency>
+
+		<!-- json -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>

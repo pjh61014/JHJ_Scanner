@@ -1,7 +1,10 @@
 package jhj.scanner.service;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import com.mongodb.util.JSON;
 
 import jhj.scanner.bo.EntryPointUrl;
 import jhj.scanner.bo.ScanningUrl;
@@ -25,8 +28,10 @@ public class ScannerServiceImpl implements ScannerService {
 		
 		ScanningUrl scanBl = new ScanningUrl();
 		System.out.println("서비스 들어옴????");
-		String test =scanBl.scan(url);
-		System.out.println(test);
+		JSONObject data =scanBl.scan(url);
+		System.out.println("서비스"+data.toJSONString());
+		//dao.process_run(data);
+	
 		/*EntryPointUrl scanB2 = new EntryPointUrl();
 		System.out.println("서비스 들어옴");
 		scanB2.scan(url);*/

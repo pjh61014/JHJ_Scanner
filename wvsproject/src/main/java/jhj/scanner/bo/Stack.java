@@ -24,7 +24,7 @@ public class Stack {
 		System.out.println("url: "+url+" date: "+date);
 	}
 
-	public void vulResult(String vul_name, String pattern_id, String pattern, String pattern_dspt, String vulTag) {
+	/*public void vulResult(String vul_name, String pattern_id, String pattern, String pattern_dspt, String vulTag) {
 		vulInfoDTO vuldto = new vulInfoDTO(vul_name, pattern_id, pattern, pattern_dspt, vulTag);
 		vullist.add(vuldto);
 		int size = vullist.size();
@@ -34,10 +34,10 @@ public class Stack {
 			vulInfoDTO list = vullist.get(i);
 			System.out.println("vul_name : " + list.getVul_name() + "Patterm_id : " + list.getPatterm_id()
 					+ "Pattern : " + list.getPattern() + "Pattern_dspt : " + list.getPattern_dspt() + "vultag : "
-					+ list.getVulTag());
+					+ list.get_id());
 		}
 
-	}
+	}*/
 
 	public void search_formname(String type, String element) {
 
@@ -70,7 +70,7 @@ public class Stack {
 	
 	public void today(){
 		ScanningUrl test = new ScanningUrl();
-		test.setDate("teste");
+		
 	}
 
 	/*

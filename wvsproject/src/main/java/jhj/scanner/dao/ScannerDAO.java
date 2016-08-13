@@ -1,8 +1,15 @@
 package jhj.scanner.dao;
 
-import org.json.simple.JSONObject;
+import java.util.List;
+
+import jhj.scanner.dto.formInfoDTO;
+import jhj.scanner.dto.scanInfoDTO;
+import jhj.scanner.dto.vulInfoDTO;
 
 public interface ScannerDAO {
 
-	void process_run(JSONObject data);
+	void scanInsert(scanInfoDTO scanresult);
+	void formInsert(formInfoDTO formresult);
+	void vulListInsert(List<vulInfoDTO> vulresult);
+	
 }

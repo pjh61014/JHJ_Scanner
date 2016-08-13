@@ -1,28 +1,33 @@
 package jhj.scanner.dto;
 
-import java.util.Arrays;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "scanresult")
 public class formInfoDTO {
-
-	
+	@Id
+	String _id;
 	private String form_name;
 	private String tagid;
-	private String code;
 
 	public formInfoDTO() {
 		super();
 	}
-	
-	
 
-	public formInfoDTO(String form_name, String tagid, String code) {
+	public formInfoDTO(String form_name, String tagid,String _id) {
 		super();
+		this._id = _id;
 		this.form_name = form_name;
 		this.tagid = tagid;
-		this.code = code;
 	}
 
+	public String get_id() {
+		return _id;
+	}
 
+	public void set_id(String _id) {
+		this._id = _id;
+	}
 
 	public String getForm_name() {
 		return form_name;
@@ -40,16 +45,11 @@ public class formInfoDTO {
 		this.tagid = tagid;
 	}
 
-	public String getCode() {
-		return code;
+	@Override
+	public String toString() {
+		return "formInfoDTO [_id=" + _id + ", form_name=" + form_name + ", tagid=" + tagid + "]";
 	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	
-		
 	
 
 }

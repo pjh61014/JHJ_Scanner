@@ -55,7 +55,7 @@
 		<beans:constructor-arg name="databaseName" 	value="mini" />
 	</beans:bean>
 
-	<mongo:repositories base-package="spring.data.mongodb.dto" />
+	<mongo:repositories base-package="jhj.scanner.dto" />
 
 
 </beans:beans>

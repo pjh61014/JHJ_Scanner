@@ -6,28 +6,24 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.jsp.tagext.TagInfo;
-import javax.tools.ForwardingJavaFileManager;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.python.antlr.ast.arguments;
-
 import jhj.scanner.dto.formInfoDTO;
+import jhj.scanner.dto.scanDTO;
 import jhj.scanner.dto.scanInfoDTO;
 import jhj.scanner.dto.vulInfoDTO;
+import jhj.scanner.service.ScannerService;
+import jhj.scanner.service.ScannerServiceImpl;
 import py4j.GatewayServer;
 
 public class ScanningUrl {
-
 	private Stack stack;
-	private String date;
 	private scanInfoDTO scandto;
 	private List<vulInfoDTO> vulinfolist;
+
 	private vulInfoDTO vulinfo;
 	private formInfoDTO formdto;
-	JSONObject obj;
-	JSONArray list;
+	private scanDTO totalinfo;
+	// JSONObject obj;
+	// JSONArray list;
 	public ScanningUrl() {
 
 	}
@@ -39,61 +35,52 @@ public class ScanningUrl {
 
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-
-	}
-
 	public Stack getStack() {
-		// System.out.println("sssssssssssssssssssssssss" + stack.toString());
+
 		return stack;
 	}
 
-	public JSONObject scan(String url) {
+	public scanDTO scan(String url) {
 		String formnames = "";
 		String tagId = "";
+		vulinfolist = new ArrayList<vulInfoDTO>();
 		GatewayServer gatewayServer = new GatewayServer(new ScanningUrl(url));
 		gatewayServer.start();
 		System.out.println("Gateway Server Stated");
-		// System.out.println("dfgdgdfgdgfdfgdfgdf00000000000000000000"+getStack());
+
 		try {
-			// System.out.println("dfgdgdfgdgfdfgdfgdf++++++++++++++++"+getStack());
+
 			System.out.println("**[java] python soure code execute!!");
-			String path = "C:\\Users\\Administrator\\git\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
-			// System.out.println("dfgdgdfgdgfdfgdfgdf111111111111111"+getStack());
+			String path = "C:\\Users\\JongHyuk\\Downloads\\JHJ_Scanner\\wvsproject\\src\\main\\java\\scanner\\scanall.py";
+
 			Process p = Runtime.getRuntime().exec("cmd /c python " + path);
 
-			System.out.println("dfgdgdfgdgfdfgdfgd222222222222222f");
-
 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"));
-			System.out.println("[java in========================");
-			// System.out.println(in);
+			System.out.println("[py4j] output reading....");
+
 			String line;
 			while ((line = in.readLine()) != null) {
 				System.out.println(line);
 				if (line.startsWith("urldate")) {
-					System.out.println("urldate ÀÐ¾î¿È");
+					System.out.println("****[java] url&date reading");
 					String[] scaninfo = line.split(",");
 
 					for (int i = 0; i < scaninfo.length; i++) {
 						scaninfo[i].trim();
 						scaninfo[i].replaceAll(" ", "");
-						//System.out.println(scaninfo[i]);
+						scaninfo[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
 
 					}
-					
-					scandto = new scanInfoDTO(scaninfo[1], scaninfo[2], "jh");
-					obj = new JSONObject();
-					obj.put("url", scaninfo[1]);
-					obj.put("date", scaninfo[2]);
-					//System.out.println("***************************************************************");
-					//System.out.println("date:" + scandto.getDate());
-					//System.out.println("url:" + scandto.getUrl());
-					//System.out.println("***************************************************************");
+
+					scandto = new scanInfoDTO(scaninfo[1], scaninfo[2], "jhj");
+					System.out.println("***************************************************************");
+					System.out.println("date:" + scandto.getDate());
+					System.out.println("url:" + scandto.getUrl());
+					System.out.println("***************************************************************");
+
+					// obj = new JSONObject();
+					// obj.put("url", scaninfo[1]);
+					// obj.put("date", scaninfo[2]);
 					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
 					// list.add(dto)
 
@@ -101,23 +88,24 @@ public class ScanningUrl {
 				if (line.startsWith("formname")) {
 					System.out.println("formname ÀÐ¾î¿È");
 					String[] formname = line.split(",");
-					list= new JSONArray();
+					// list= new JSONArray();
 					for (int i = 1; i < formname.length; i++) {
 						formname[i].trim();
 						formname[i].replaceAll(" ", "");
+						formname[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
 						formnames = formnames + formname[i];
-						list.add(formname[i]);
-						//System.out.println(formname[i]);
-						//System.out.println("formnames" + formnames);
+						// list.add(formname[i]);
+						// System.out.println(formname[i]);
+						// System.out.println("formnames" + formnames);
 					}
-					//System.out.println("***************************************************************");
+					// System.out.println("***************************************************************");
 					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
 					// list.add(dto)
 
-					obj.put("formname", list);
-					
-					System.out.println("ddddsaddddddddddddddddddd");
-					System.out.println(obj.toJSONString());
+					// obj.put("formname", list);
+
+					// System.out.println("ddddsaddddddddddddddddddd");
+					// System.out.println(obj.toJSONString());
 				}
 
 				if (line.startsWith("tagid")) {
@@ -125,60 +113,78 @@ public class ScanningUrl {
 					String[] tagid = line.split(",");
 					List<String> text = new ArrayList<String>();
 					String[] tagidlist = new String[text.size()];
-					list=new JSONArray();
+					// list=new JSONArray();
 
 					for (int i = 1; i < tagid.length; i++) {
 						tagid[i].trim();
 						tagid[i].replaceAll(" ", "");
-						list.add(tagid[i]);
+						tagid[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
+						// list.add(tagid[i]);
 						text.add(tagid[i]);
 
 					}
 					text.toArray(tagidlist);
 
-					//System.out.println(text.toString());
+					// System.out.println(text.toString());
 					tagId = text.toString();
-					obj.put("tagid", list);
-					System.out.println("ddddsaddddddddddddddddddd");
-					System.out.println(obj.toJSONString());
-					//System.out.println(tagId);
+					// obj.put("tagid", list);
+
+					// System.out.println(obj.toJSONString());
+					// System.out.println(tagId);
 
 				}
-				//System.out.println("***************************************************************");
-				formdto = new formInfoDTO(formnames, tagId, "jhj");
-				//System.out.println(formdto.getForm_name());
-				//System.out.println(formdto.getTagid());
-				//System.out.println("***************************************************************");
-				vulinfolist = new ArrayList<vulInfoDTO>();
+				/*
+				 * System.out.println(
+				 * "***************************************************************"
+				 * ); formdto = new formInfoDTO(formnames, tagId, "jhj");
+				 * System.out.println(formdto.getForm_name());
+				 * System.out.println(formdto.getTagid()); System.out.println(
+				 * "***************************************************************"
+				 * );
+				 */
+
 				if (line.startsWith("vulinfo")) {
 					System.out.println("vulinfo ÀÐ¾î¿È");
 					String trim = line.trim();
 					String[] vul = line.split(",");
-					list = new JSONArray();
-					System.out.println(vul.length);
-					
-					
-					list.add(vul[1]);
-					list.add(vul[2]);
-					list.add(vul[3]+vul[4]);
-					list.add(vul[5]);
-					
-					obj.put("vulinfo", list);
-					System.out.println(obj.toJSONString());
-					vulinfo = new vulInfoDTO(vul[1],vul[2],vul[3]+vul[4],vul[5],"jhj");
-					vulinfolist.add(vulinfo);
-					
-					for (int i = 0; i < vulinfolist.size(); i++) {
-						System.out.println("ddd"+vulinfolist.get(i).getPattern());
+					// list = new JSONArray();
+					for (int i = 0; i < vul.length; i++) {
+						System.out.print("[" + i + "] " + vul[i] + ",");
+						System.out.println("");
 					}
 
-					
+					// list.add(vul[1]);
+					// list.add(vul[2]);
+					// list.add(vul[3]+vul[4]);
+					// list.add(vul[5]);
+
+					// obj.put("vulinfo", list);
+					// System.out.println(obj.toJSONString());
+					vulinfo = new vulInfoDTO(vul[1], vul[2], vul[3] + vul[4], vul[5], "jhj");
+					vulinfolist.add(vulinfo);
+
 					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
 					// list.add(dto)
 
 				}
 			}
 
+			System.out.println("**************************form name & tagid************************************");
+			formdto = new formInfoDTO(formnames, tagId, "jhj");
+			System.out.println(formdto.getForm_name());
+			System.out.println(formdto.getTagid());
+			System.out.println("***************************************************************");
+
+			System.out.println("***************************************************************");
+			int size = vulinfolist.size();
+			for (int i = 0; i < size; i++) {
+				vulInfoDTO vuldto = vulinfolist.get(i);
+				// System.out.println(vuldto.getPattern_dspt());
+				System.out.println("vuldname: " + vuldto.getVul_name() + "pattern_id: " + vuldto.getPatterm_id()
+						+ "pattern: " + vuldto.getPattern() + "pattern_id" + vuldto.getPattern_dspt() + " vultag: "
+						+ vuldto.get_id());
+			}
+			System.out.println("**************************vulinfo*************************************");
 			in.close();
 
 			p.waitFor();
@@ -193,7 +199,11 @@ public class ScanningUrl {
 
 			e.printStackTrace();
 		}
-		return obj;
-	}
+
+	totalinfo = new scanDTO(scandto,formdto,vulinfolist);
 	
+	return totalinfo;
+
+	}
+
 }

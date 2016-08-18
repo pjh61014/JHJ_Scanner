@@ -6,17 +6,17 @@ public class formInfoDTO {
 
    private String form_type;
    private String[] form_name;
-   private String[] tagid;
+   private String[] tag_id;
 
    public formInfoDTO() {
       super();
    }
 
-   public formInfoDTO(String form_type, String[] form_name, String[] tagid) {
+   public formInfoDTO(String form_type, String[] form_name, String[] tag_id) {
       super();
       this.form_type = form_type;
       this.form_name = form_name;
-      this.tagid = tagid;
+      this.tag_id = tag_id;
    }
 
    public String getForm_type() {
@@ -35,18 +35,18 @@ public class formInfoDTO {
       this.form_name = form_name;
    }
 
-   public String[] getTagid() {
-      return tagid;
+   public String[] gettag_id() {
+      return tag_id;
    }
 
-   public void setTagid(String[] tagid) {
-      this.tagid = tagid;
+   public void settag_id(String[] tag_id) {
+      this.tag_id = tag_id;
    }
 
    @Override
    public String toString() {
-      return "formInfoDTO [form_type=" + form_type + ", form_name=" + Arrays.toString(form_name) + ", tagid="
-            + Arrays.toString(tagid) + "]";
+      return "formInfoDTO [form_type=" + form_type + ", form_name=" + Arrays.toString(form_name) + ", tag_id="
+            + Arrays.toString(tag_id) + "]";
    }
    
    

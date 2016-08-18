@@ -1,23 +1,21 @@
 package jhj.scanner.dto;
 
+import java.util.Arrays;
+
 public class vulInfoDTO {
 
 	private String code;
-	private String vul_name;
-	private String patterm_id;
-	private String pattern;
-	private String pattern_dspt;
+	private String[] vul_name;
+	private String[] vul_pattern;
 
 	public vulInfoDTO() {
 	}
 
-	public vulInfoDTO(String code, String vul_name, String patterm_id, String pattern, String pattern_dspt) {
+	public vulInfoDTO(String code, String[] vul_name, String[] vul_pattern) {
 		super();
 		this.code = code;
 		this.vul_name = vul_name;
-		this.patterm_id = patterm_id;
-		this.pattern = pattern;
-		this.pattern_dspt = pattern_dspt;
+		this.vul_pattern = vul_pattern;
 	}
 
 	public String getCode() {
@@ -28,42 +26,26 @@ public class vulInfoDTO {
 		this.code = code;
 	}
 
-	public String getVul_name() {
+	public String[] getVul_name() {
 		return vul_name;
 	}
 
-	public void setVul_name(String vul_name) {
+	public void setVul_name(String[] vul_name) {
 		this.vul_name = vul_name;
 	}
 
-	public String getPatterm_id() {
-		return patterm_id;
+	public String[] getVul_pattern() {
+		return vul_pattern;
 	}
 
-	public void setPatterm_id(String patterm_id) {
-		this.patterm_id = patterm_id;
-	}
-
-	public String getPattern() {
-		return pattern;
-	}
-
-	public void setPattern(String pattern) {
-		this.pattern = pattern;
-	}
-
-	public String getPattern_dspt() {
-		return pattern_dspt;
-	}
-
-	public void setPattern_dspt(String pattern_dspt) {
-		this.pattern_dspt = pattern_dspt;
+	public void setVul_pattern(String[] vul_pattern) {
+		this.vul_pattern = vul_pattern;
 	}
 
 	@Override
 	public String toString() {
-		return "vulInfoDTO [code=" + code + ", vul_name=" + vul_name + ", patterm_id=" + patterm_id + ", pattern="
-				+ pattern + ", pattern_dspt=" + pattern_dspt + "]";
+		return "vulInfoDTO [code=" + code + ", vul_name=" + Arrays.toString(vul_name) + ", vul_pattern="
+				+ Arrays.toString(vul_pattern) + "]";
 	}
 
 }

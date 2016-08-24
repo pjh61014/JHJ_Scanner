@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mongodb.DBObject;
 
+import jhj.scanner.dto.Address;
 import jhj.scanner.dto.formInfoDTO;
 import jhj.scanner.dto.scanInfoDTO;
 import jhj.scanner.dto.vulInfoDTO;
@@ -18,39 +19,16 @@ public class ScannerDAOImpl implements ScannerDAO {
 	@Autowired 
 	MongoTemplate mongoTemplate;
 	
-	public ScannerDAOImpl() {
-		super();
-		System.out.println("dao°´Ã¼»ý¼º++++++++++++++++++++++++++++++++++++");
-	}
-
 	
-
 	@Override
-	public void scanInsert(scanInfoDTO scanresult) {
-		System.out.println("ddddd");
-		mongoTemplate.insert(scanresult);
+	public void testSave3(scanInfoDTO scanresult, formInfoDTO formresult, List<vulInfoDTO> vulne) {
+		scanresult.setForminfodto(formresult);
+		scanresult.setVulinfo(vulne);
+		mongoTemplate.save(scanresult);
 		
+	}
 	
-	}
-
-	@Override
-	public void formInsert(formInfoDTO formresult) {
-		System.out.println("ddddd");
-		mongoTemplate.insert(formresult);
-	}
-
-	@Override
-	public void vulListInsert(List<vulInfoDTO> vulresult) {
-		//mongoTemplate.insertAll(vulresult);
-	}
-
-
-
-	@Override
-	public String toString() {
-		System.out.println("daoÀÇ toString");
-		return "ScannerDAOImpl [mongoTemplate=" + mongoTemplate + "]";
-	}
+	
 
 	
 }

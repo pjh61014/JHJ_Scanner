@@ -8,8 +8,6 @@ import jhj.scanner.dto.vulInfoDTO;
 
 public interface ScannerDAO {
 
-	void scanInsert(scanInfoDTO scanresult);
-	void formInsert(formInfoDTO formresult);
-	void vulListInsert(List<vulInfoDTO> vulresult);
+	void testSave3(scanInfoDTO scanresult, formInfoDTO formresult,List<vulInfoDTO> vulne);
 	
 }

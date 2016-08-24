@@ -10,6 +10,6 @@ import jhj.scanner.dto.vulInfoDTO;
 public interface ScannerService {
 
 	void process_run(String url);
-	void resultInsert(scanInfoDTO scaninfo,List<vulInfoDTO> vulinfolist, formInfoDTO forminfo);
+	
 
 }

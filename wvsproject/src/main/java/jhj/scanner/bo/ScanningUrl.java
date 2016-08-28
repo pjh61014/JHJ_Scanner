@@ -3,9 +3,11 @@ package jhj.scanner.bo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.bson.types.ObjectId;
 
@@ -24,6 +26,7 @@ public class ScanningUrl {
 	private formInfoDTO formdto;
 	private scanDTO totalinfo;
 	ObjectId id;
+
 	// JSONObject obj;
 	// JSONArray list;
 	public ScanningUrl() {
@@ -45,7 +48,18 @@ public class ScanningUrl {
 	public scanDTO scan(String url) {
 		String formnames = "";
 		String tagId = "";
+		String regexDomain = "";
+		String targetDomain = "";
+		String hyphen = "";
+		String colon = "";
+		String resultid = "";
+		String date = "";
+		String[] dateSplit;
+		String[] hyphenSplit;
+		String[] colonSplit;
+
 		vulinfolist = new ArrayList<vulInfoDTO>();
+
 		GatewayServer gatewayServer = new GatewayServer(new ScanningUrl(url));
 		gatewayServer.start();
 		System.out.println("Gateway Server Stated");
@@ -73,14 +87,47 @@ public class ScanningUrl {
 						scaninfo[i].trim();
 						scaninfo[i].replaceAll(" ", "");
 						scaninfo[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
+						scaninfo[i].replaceAll("\u00A0", "");
+						scaninfo[i].replaceAll("\\s", "");
+						System.out.println(i + " 번째" + scaninfo[i]);
 
 					}
-					
-					scandto = new scanInfoDTO(scaninfo[1], scaninfo[2], id.toString(),"sqlinjection");
-					//scandto = new scanInfoDTO(scaninfo[1], scaninfo[2]);
-					//scandto = new scanInfoDTO(scaninfo[1], scaninfo[2],id);
+
+					Pattern urlPattern = Pattern.compile(
+							"^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$");
+
+					System.out.println("scaninfo[1]: " + scaninfo[1]);
+					targetDomain = scaninfo[1];
+
+					Matcher mc = urlPattern.matcher(targetDomain.trim());
+					if (mc.matches()) {
+						for (int i = 0; i < mc.groupCount(); i++) {
+							System.out.println("group(" + i + ") = " + mc.group(i));
+						}
+
+					} else {
+						System.out.println("not found");
+					}
+					regexDomain = mc.group(2);
+					date = scaninfo[2];
+					dateSplit = date.trim().split(" ");
+					hyphenSplit = dateSplit[0].split("-");
+					colonSplit = dateSplit[1].split(":");
+					for (int i = 0; i < hyphenSplit.length; i++) {
+						System.out.println(i + " 번재" + hyphenSplit[i]);
+						hyphen += hyphenSplit[i];
+					}
+					for (int i = 0; i < colonSplit.length; i++) {
+						System.out.println(i + " 번재" + colonSplit[i]);
+						colon += colonSplit[i];
+					}
+					resultid = hyphen.toString() + colon.toString() + regexDomain;
+					System.out.println(resultid);
+					scandto = new scanInfoDTO(id.toString(),targetDomain.trim(), date.trim(),resultid,"SQLi");
+					// scandto = new scanInfoDTO(scaninfo[1], scaninfo[2]);
+					// scandto = new scanInfoDTO(scaninfo[1], scaninfo[2],id);
 					System.out.println("***************************************************************");
-					
+
 					System.out.println("url:" + scandto.getUrl());
 					System.out.println("***************************************************************");
 
@@ -206,9 +253,9 @@ public class ScanningUrl {
 			e.printStackTrace();
 		}
 
-	totalinfo = new scanDTO(scandto,formdto,vulinfolist);
-	
-	return totalinfo;
+		totalinfo = new scanDTO(scandto, formdto, vulinfolist);
+
+		return totalinfo;
 
 	}
 

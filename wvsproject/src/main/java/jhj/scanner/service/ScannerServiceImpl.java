@@ -17,15 +17,24 @@ public class ScannerServiceImpl implements ScannerService {
 	ScannerDAO dao;
 
 	@Override
-	public void process_run(String url) {
+	public String process_run(String url) {
 
 		ScanningUrl scanBl = new ScanningUrl();
-		System.out.println("서비스 들어옴????");
+		System.out.println("Business Object Entering...");
 		scanDTO result = scanBl.scan(url);
 		System.out.println("process_run end!!!");
+		//String resultsid=dao.scanResults(result);
+		
+		//System.out.println("findResult 호출");
+		//findResult();
+		return dao.scanResults(result);
 
-		dao.scanResults(result);
+	}
 
+	@Override
+	public void findResult(String scanresult) {
+		System.out.println("findresults 호출 됨");
+		dao.findResults(scanresult);
 	}
 
 }

@@ -16,7 +16,9 @@ public class scanInfoDTO {
 	@Field
 	private String date;
 	@Field
-	private String code;
+	private String resultid;
+	@Field
+	private String vul_type;
 	@Field
 	private String form_name;
 	@Field
@@ -31,21 +33,17 @@ public class scanInfoDTO {
 
 	}
 
-	public scanInfoDTO(String url, String date) {
-		super();
-		this.url = url;
-		this.date = date;
-	}
-
-	public scanInfoDTO(String url, String date, String _id, String code) {
+	
+	public scanInfoDTO(String _id, String url, String date, String resultid, String vul_type) {
 		super();
 		this._id = _id;
 		this.url = url;
 		this.date = date;
-		this.code = code;
+		this.resultid = resultid;
+		this.vul_type = vul_type;
 	}
 
-	/*
+		/*
 	 * public scanInfoDTO(String _id, String url, String date, String form_name)
 	 * { super(); this._id = _id; this.url = url; this.date = date;
 	 * this.form_name = form_name; }
@@ -61,13 +59,17 @@ public class scanInfoDTO {
 		return form_name;
 	}
 
-	public String getCode() {
-		return code;
+	
+	
+	public String getResultid() {
+		return resultid;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+
+	public void setResultid(String resultid) {
+		this.resultid = resultid;
 	}
+
 
 	public String getTagid() {
 		return tagid;
@@ -115,6 +117,14 @@ public class scanInfoDTO {
 
 	public void setVulinfo(List<vulInfoDTO> vulinfo) {
 		this.vulinfo = vulinfo;
+	}
+
+	public String getVul_type() {
+		return vul_type;
+	}
+
+	public void setVul_type(String vul_type) {
+		this.vul_type = vul_type;
 	}
 
 	@Override

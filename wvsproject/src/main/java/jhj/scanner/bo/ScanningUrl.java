@@ -27,8 +27,6 @@ public class ScanningUrl {
 	private scanDTO totalinfo;
 	ObjectId id;
 
-	// JSONObject obj;
-	// JSONArray list;
 	public ScanningUrl() {
 
 	}
@@ -46,8 +44,7 @@ public class ScanningUrl {
 	}
 
 	public scanDTO scan(String url) {
-		String formnames = "";
-		String tagId = "";
+		
 		String regexDomain = "";
 		String targetDomain = "";
 		String hyphen = "";
@@ -57,6 +54,8 @@ public class ScanningUrl {
 		String[] dateSplit;
 		String[] hyphenSplit;
 		String[] colonSplit;
+		String[] postTagids ={};
+		String[] postFormnames={};
 
 		vulinfolist = new ArrayList<vulInfoDTO>();
 
@@ -123,117 +122,90 @@ public class ScanningUrl {
 					}
 					resultid = hyphen.toString() + colon.toString() + regexDomain;
 					System.out.println(resultid);
-					scandto = new scanInfoDTO(id.toString(),targetDomain.trim(), date.trim(),resultid,"SQLi");
-					// scandto = new scanInfoDTO(scaninfo[1], scaninfo[2]);
-					// scandto = new scanInfoDTO(scaninfo[1], scaninfo[2],id);
+					scandto = new scanInfoDTO(id.toString(), targetDomain.trim(), date.trim(), resultid, "SQLi");
+
 					System.out.println("***************************************************************");
 
 					System.out.println("url:" + scandto.getUrl());
 					System.out.println("***************************************************************");
-
-					// obj = new JSONObject();
-					// obj.put("url", scaninfo[1]);
-					// obj.put("date", scaninfo[2]);
-					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
-					// list.add(dto)
-
 				}
 				if (line.startsWith("formname")) {
 					System.out.println("formname ÀÐ¾î¿È");
-					String[] formname = line.split(",");
-					// list= new JSONArray();
-					for (int i = 1; i < formname.length; i++) {
-						formname[i].trim();
-						formname[i].replaceAll(" ", "");
-						formname[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
-						formnames = formnames + formname[i];
-						// list.add(formname[i]);
-						// System.out.println(formname[i]);
-						// System.out.println("formnames" + formnames);
+					String[] formNames = line.split(",");
+					ArrayList<String> preFormnames = new ArrayList<String>();
+
+					for (int i = 1; i < formNames.length; i++) {
+						preFormnames.add(formNames[i]);
+
 					}
-					// System.out.println("***************************************************************");
-					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
-					// list.add(dto)
 
-					// obj.put("formname", list);
+					String[] refineFormnames = preFormnames.toArray(new String[preFormnames.size()]);
+					postFormnames = new String[refineFormnames.length];
+					String formname;
 
-					// System.out.println("ddddsaddddddddddddddddddd");
-					// System.out.println(obj.toJSONString());
+					for (int i = 0; i < refineFormnames.length; i++) {
+						formname = refineFormnames[i];
+						postFormnames[i] = formname.trim();
+						formname = "";
+					}
+
+					for (int i = 0; i < postFormnames.length; i++) {
+						System.out.println(postFormnames[i]);
+					}
+
 				}
 
 				if (line.startsWith("tagid")) {
 					System.out.println("tagid ÀÐ¾î¿È");
-					String[] tagid = line.split(",");
-					List<String> text = new ArrayList<String>();
-					String[] tagidlist = new String[text.size()];
-					// list=new JSONArray();
+					String[] tagIds = line.split(",");
+					ArrayList<String> preTagids = new ArrayList<String>();
 
-					for (int i = 1; i < tagid.length; i++) {
-						tagid[i].trim();
-						tagid[i].replaceAll(" ", "");
-						tagid[i].replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
-						// list.add(tagid[i]);
-						text.add(tagid[i]);
-
+					for (int i = 1; i < tagIds.length; i++) {
+						preTagids.add(tagIds[i]);
 					}
-					text.toArray(tagidlist);
 
-					// System.out.println(text.toString());
-					tagId = text.toString();
-					// obj.put("tagid", list);
+					String[] refineTagids = preTagids.toArray(new String[preTagids.size()]);
+					postTagids = new String[refineTagids.length];
+					String tagid;
 
-					// System.out.println(obj.toJSONString());
-					// System.out.println(tagId);
+					for (int i = 0; i < refineTagids.length; i++) {
+						tagid = refineTagids[i];
+						postTagids[i] = tagid.trim();
+						tagid = "";
+					}
+
+					for (int i = 0; i < postTagids.length; i++) {
+						System.out.println(postTagids[i]);
+					}
 
 				}
-				/*
-				 * System.out.println(
-				 * "***************************************************************"
-				 * ); formdto = new formInfoDTO(formnames, tagId, "jhj");
-				 * System.out.println(formdto.getForm_name());
-				 * System.out.println(formdto.getTagid()); System.out.println(
-				 * "***************************************************************"
-				 * );
-				 */
 
 				if (line.startsWith("vulinfo")) {
 					System.out.println("vulinfo ÀÐ¾î¿È");
 					String trim = line.trim();
 					String[] vul = line.split(",");
-					// list = new JSONArray();
 					for (int i = 0; i < vul.length; i++) {
 						System.out.print("[" + i + "] " + vul[i] + ",");
 						System.out.println("");
 					}
 
-					// list.add(vul[1]);
-					// list.add(vul[2]);
-					// list.add(vul[3]+vul[4]);
-					// list.add(vul[5]);
-
-					// obj.put("vulinfo", list);
-					// System.out.println(obj.toJSONString());
-					ObjectId id = new ObjectId();
 					vulinfo = new vulInfoDTO(vul[1], vul[2], vul[3] + vul[4], vul[5]);
 					vulinfolist.add(vulinfo);
-
-					// ResultDTO dto = new ResultDTO(data[1],data[2]....)
-					// list.add(dto)
 
 				}
 			}
 
 			System.out.println("**************************form name & tagid************************************");
-			formdto = new formInfoDTO(formnames, tagId);
-			System.out.println(formdto.getForm_name());
-			System.out.println(formdto.getTagid());
+			formdto = new formInfoDTO(postFormnames, postTagids);
+			//System.out.println(formdto.getForm_name());
+			//System.out.println(formdto.getTagid());
 			System.out.println("***************************************************************");
 
 			System.out.println("***************************************************************");
 			int size = vulinfolist.size();
 			for (int i = 0; i < size; i++) {
 				vulInfoDTO vuldto = vulinfolist.get(i);
-				// System.out.println(vuldto.getPattern_dspt());
+
 				System.out.println("vuldname: " + vuldto.getVul_name() + "pattern_id: " + vuldto.getPatterm_id()
 						+ "pattern: " + vuldto.getPattern() + "pattern_id" + vuldto.getPattern_dspt());
 			}

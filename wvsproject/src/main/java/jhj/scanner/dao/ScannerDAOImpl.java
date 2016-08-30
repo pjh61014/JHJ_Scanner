@@ -45,9 +45,11 @@ public class ScannerDAOImpl implements ScannerDAO {
 		criteria.is(resultid);
 		Query query = new Query(criteria);
 		
-		scanInfoDTO mongotestVO =mongoTemplate.findOne(query, scanInfoDTO.class,"scanresult");
+		/*scanInfoDTO mongotestVO =mongoTemplate.findOne(query, scanInfoDTO.class,"scanresult");*/
+		scanInfoDTO mongotestVO =mongoTemplate.findOne(query, scanInfoDTO.class, "scanresult");
 		System.out.println("[ObjectId]" + mongotestVO.get_id()
-		+"[URL]"+mongotestVO.getUrl()+"[DATE]"+mongotestVO.getDate());
+		+"[URL]"+mongotestVO.getUrl()+"[DATE]"+mongotestVO.getDate()+
+		"vultype"+mongotestVO.getVul_type());
 		
 	}
 

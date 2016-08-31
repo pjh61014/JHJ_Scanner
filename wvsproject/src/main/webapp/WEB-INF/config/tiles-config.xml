@@ -15,7 +15,11 @@
 
 
 	<definition name="main" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/views/main_content.jsp" />
+		<put-attribute name="content" value="/WEB-INF/scan/main_content.jsp" />
+	</definition>
+	
+	<definition name="targetScanResult" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/scan/targetScanResult.jsp" />
 	</definition>
 
 

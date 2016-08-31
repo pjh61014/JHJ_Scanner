@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import jhj.scanner.bo.ScanningUrl;
-//github.com/pjh61014/JHJ_Scanner.git
 import jhj.scanner.dao.ScannerDAO;
 import jhj.scanner.dto.scanDTO;
+import jhj.scanner.dto.scanInfoDTO;
 
 @Service
 public class ScannerServiceImpl implements ScannerService {
@@ -23,18 +23,15 @@ public class ScannerServiceImpl implements ScannerService {
 		System.out.println("Business Object Entering...");
 		scanDTO result = scanBl.scan(url);
 		System.out.println("process_run end!!!");
-		//String resultsid=dao.scanResults(result);
-		
-		//System.out.println("findResult »£√‚");
-		//findResult();
+
 		return dao.scanResults(result);
 
 	}
 
 	@Override
-	public void findResult(String scanresult) {
+	public scanInfoDTO findResult(String scanresult) {
 		System.out.println("findresults »£√‚ µ ");
-		dao.findResults(scanresult);
+		return dao.findResults(scanresult);
 	}
 
 }

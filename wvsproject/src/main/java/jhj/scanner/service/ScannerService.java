@@ -1,9 +1,11 @@
 package jhj.scanner.service;
 
+import jhj.scanner.dto.scanInfoDTO;
+
 public interface ScannerService {
 
 	String process_run(String url);
-	void findResult(String resultid);
+	scanInfoDTO findResult(String resultid);
 	
 
 }
